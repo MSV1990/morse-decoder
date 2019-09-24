@@ -37,8 +37,39 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
+
+
 function decode(expr) {
-    // write your solution here
+    let message = '';
+    let morseCode = '';
+const dot = '10';
+const slash = '11';
+const space = ' '
+    const words = expr.split(`**********`);
+    words.forEach(word => {
+        if(message.length > 1) {
+            message += space;
+        }
+            for( let i = 0; i < word.length; i+= 10) {
+                let letter = [];
+      letter = word.slice(i,i + 10);
+      
+      for(let j = 0; j < letter.length - 1; j+=2) {
+          if(letter[j]+letter[j+1] === dot) {
+morseCode += '.';
+
+          }
+          if(letter[j]+letter[j+1] === slash) {
+            morseCode += '-';
+                      }
+      }
+      message += MORSE_TABLE[morseCode];
+      morseCode = '';
+      
+
+        }
+    });
+        return message;
 }
 
 module.exports = {
